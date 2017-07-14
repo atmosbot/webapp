@@ -36,12 +36,10 @@ jobs:
       # run tests!
       - run: yarn test
       - setup_remote_docker
-
-
       - run:
-        name: Pushing to Docker
-        command:|
-          TAG=0.1.$CIRCLE_BUILD_NUM
-          docker build -t atmosbot/webapp:$TAG .
-          docker login -u $DOCKER_USER -p $DOCKER_PASS
-          docker push atmosbot/webapp:$TAG
+          name: Push to to Docker
+          command: |
+            TAG=0.1.$CIRCLE_BUILD_NUM
+            docker build -t atmosbot/webapp:$TAG .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push atmosbot/webapp:$TAG
